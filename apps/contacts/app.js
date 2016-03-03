@@ -1,5 +1,7 @@
 var ReactDOM = require('react-dom')
-    var React = require('react')
+var React = require('react')
+var api =  require ('./stubAPI').api;
+var buttons = require('./buttonsConfig' ).buttons ;
 
     var ContactForm = React.createClass({
         render: function(){
@@ -23,25 +25,85 @@ var ReactDOM = require('react-dom')
       });
 
     var Contact = React.createClass({
+      getInitialState : function() {
+               return {
+                status : '',
+                name: this.props.contact.name,
+                address: this.props.contact.address,
+                phone_number: this.props.contact.phone_number
+               } ;
+            },
+            handleEdit : function() {
+                 this.setState({ status : 'edit'} )
+            },    
+            handleCancel : function() {
+                 this.setState({ status : '', 
+                         name: this.props.contact.name,
+                         address: this.props.contact.address,
+                         phone_number: this.props.contact.phone_number} ) ;
+            }, 
+            handleSave : function(e) {
+                e.preventDefault();
+                var name = this.state.name.trim();
+                var address = this.state.address.trim();
+                var phone_number = this.state.phone_number.trim();
+                if (!name || !address || !phone_number) {
+                  return;
+                }
+                this.props.updateHandler(this.props.contact.phone_number,
+                         name,address,phone_number);
+                this.setState({status : ''} )
+            }, 
+            handleNameChange: function(e) {
+                this.setState({name: e.target.value});
+            },
+            handleAddressChange: function(e) {
+               this.setState({address: e.target.value});
+            },
+            handlePhoneNumChange: function(e) {
+               this.setState({phone_number: e.target.value});
+            },
+
           render: function(){
             
-            var fields = [
-                     <td key={'name'} >{this.props.contacts.name}</td>,
-                      <td key={'address'}>{this.props.contacts.address}</td>,
-                      <td key={'phone_number'}>{this.props.contacts.phone_number}</td>
+            var activeButtons = buttons.normal ;
+               var leftButtonHandler = this.handleEdit ;
+               var rightButtonHandler = null ;
+               var fields = [
+                     <td key={'name'} >{this.props.contact.name}</td>,
+                      <td key={'address'}>{this.props.contact.address}</td>,
+                      <td key={'phone_number'}>{this.props.contact.phone_number}</td>
                    ] ;
+
+                   if (this.state.status == 'edit' ) {
+                   activeButtons = buttons.edit ;
+                   leftButtonHandler = this.handleSave;
+                   rightButtonHandler = this.handleCancel ;
+                   fields = [
+                      <td key={'name'}><input type="text" className="form-control"
+                         value={this.state.name}
+                         onChange={this.handleNameChange} /> </td>,
+                      <td key={'address'}><input type="text" className="form-control"
+                         value={this.state.address}
+                         onChange={this.handleAddressChange} /> </td>,
+                      <td key={'phone_number'}><input type="text" className="form-control"
+                         value={this.state.phone_number}
+                         onChange={this.handlePhoneNumChange} /> </td>,
+                   ] ;
+               }
               return (
-                      <tr >
-                         {fields}
-                         <td>
-                          <input type="button" className="btn btn-primary" 
-                                 value="Edit" />
+                    <tr >
+                      {fields}
+                      <td>
+                          <input type="button" className={'btn ' + activeButtons.leftButtonColor} 
+                                 value={activeButtons.leftButtonVal}
+                                 onClick={leftButtonHandler} />
                       </td>
                       <td>
-                         <input type="button" className="btn btn-primary" 
-                               value="Delete" />
+                         <input type="button" className={'btn ' + activeButtons.rightButtonColor} 
+                               value={activeButtons.rightButtonVal} 
+                               onClick={rightButtonHandler} />
                       </td>
-                         
                       </tr>
 
                 ) ;
@@ -52,7 +114,8 @@ var ReactDOM = require('react-dom')
           render: function(){
                var contactRows = this.props.contacts.map(function(contact){
                     return (
-                     <Contact key={contact.phone_number}  contacts={contact} />
+                     <Contact key={contact.phone_number}  contact={contact} 
+                        updateHandler={this.props.updateHandler } />
                       ) ;
                   }.bind(this) );
               return (
@@ -77,50 +140,32 @@ var ReactDOM = require('react-dom')
                         <th></th>
                         </tr>
                       </thead>
-                      <ContactList  contacts={this.props.contacts} />
+                      <ContactList  contacts={this.props.contacts} 
+                      updateHandler={this.props.updateHandler} />
                 </table>
                 );
           }
       });
 
        var ContactsApp = React.createClass({
+        updateContact : function(key,n,a,p) {
+                   api.update(key,n,a,p) ;
+                   this.setState({});               
+              },  
           render: function(){
+            var contacts = api.getAll() ;
               return (
                     <div>
                        <h1>Contact List.</h1>
-                       <ContactsTable  contacts={this.props.contacts} />
+                       <ContactsTable  contacts={contacts} 
+                       updateHandler={this.updateContact} />
                     </div>
               );
           }
       });
 
-    var contacts = [
-            {
-                "name": "Contact 1",
-                "address": "123 Test St",
-                "phone_number": "132-3212"
-            },
-
-            {
-                "name": "Contact 2",
-                "address": "23 Main St",
-                "phone_number": "934-4329"
-            },
-
-            {
-                "name": "Contact 3",
-                "address": "4 Lower St",
-                "phone_number": "432-5832"
-            },
-
-            {
-                "name": "Contact 4",
-                "address": "49 Upper Street",
-                "phone_number": "934-4290"
-            }
-          ] ;       
-    // Changed code 
+    
     ReactDOM.render(
-      <ContactsApp  contacts={contacts}  />,
+      <ContactsApp  />,
       document.getElementById('mount-point')
     );
