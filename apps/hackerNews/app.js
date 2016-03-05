@@ -1,4 +1,10 @@
 // TODO
+var CommentView = require('./commentPage').CommentView ;
+    var ReactRouter = require('react-router')
+    var Router = ReactRouter.Router
+    var Route = ReactRouter.Route
+    var Link = ReactRouter.Link
+    var IndexRoute = ReactRouter.IndexRoute
 var ReactDOM = require('react-dom')
     var React = require('react')
     var api =  require ('./stubAPI').api;
@@ -101,23 +107,39 @@ var ReactDOM = require('react-dom')
                        }
                     );
                   return (
-                    <div className="container">
-                       <div className="row">
-                          <div className="col-md-6 col-md-offset-3">
-                             <div className="page-header">
-                                <h1>Hacker News</h1>
-                                   <NewsList posts={posts} 
-                                        upvoteHandler={this.incrementUpvote} />
-                                   <Form  addPostHandler={this.addPost}/>
-                             </div>
-                           </div>
-                        </div>
-                      </div>
+                  <div >
+                    <NewsList posts={posts} 
+                    upvoteHandler={this.incrementUpvote} />
+                    <Form addHandler={this.addPost}  />
+                  </div>
                   );
               }
           });
+var App = React.createClass({
+      render : function() {
+        return (
+            <div className="container">
+               <div className="row">
+                  <div className="col-md-6 col-md-offset-3">
+                     <div className="page-header">
+                        <h1>Hacker News</h1>
+                           {this.props.children}
+                     </div>
+                   </div>
+                </div>
+              </div>
+        )
+      }
+    });
 
-          ReactDOM.render(
-              <HackerApp />,
-              document.getElementById('mount-point')
-          );
+     ReactDOM.render(
+     (
+      <Router >
+        <Route path="/" component={App}>
+           <IndexRoute component={HackerApp}/>
+           <Route path="posts/:postId" component={CommentView} />
+        </Route>
+      </Router>
+    ),
+      document.getElementById('mount-point')
+  );
