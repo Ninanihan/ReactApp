@@ -1,7 +1,14 @@
+// TODO
+var ReactRouter = require('react-router')
+    var Router = ReactRouter.Router
+    var Route = ReactRouter.Route
+    var Link = ReactRouter.Link
+    var IndexRoute = ReactRouter.IndexRoute
 var ReactDOM = require('react-dom')
     var React = require('react')
     var phones = require('./data').allPhones ;
-    var _ = require('lodash');
+    var _ = require('lodash');    //NEW
+    var PhoneDetail = require('./phoneDetail.js' ).PhoneDetail ;
 
     var SelectBox = React.createClass({
       handleChange : function(e, type,value) {
@@ -17,7 +24,7 @@ var ReactDOM = require('react-dom')
       render: function(){
            return (
                 <div className="col-md-10">
-              <input type="text" placeholder="Search" 
+               <input type="text" placeholder="Search" 
                           value={this.props.filterText}
                           onChange={this.handleTextChange} />
                  Sort by:
@@ -31,21 +38,19 @@ var ReactDOM = require('react-dom')
           }
        });
 
-
     // TODO (missing component)
-    var PhoneItem= React.createClass({
-          render: function(){
-              return (
-                 <li className="thumbnail phone-listing">
-                <a href={'#/phones/'+this.props.phones.age} className="thumb">
-                  <img src={this.props.phones.imageUrl}/> </a>
-                <a href={'#/phones/'+this.props.phones.age}>{this.props.phones.id}</a>
-                     <p>{this.props.phones.snippet}</p>
-                 </li> 
-                ) ;
-          }
-      });
-
+    var PhoneItem = React.createClass({
+      render: function(){
+           return (
+                <li className="thumbnail phone-listing">
+                  <Link to={'/phones/' + this.props.phones.id} className="thumb">
+                       <img src={this.props.phones.imageUrl} /> </Link>
+                  <Link to={'/phones/' + this.props.phones.id}> {this.props.phones.name}</Link>
+                  <p>{this.props.phones.snippet}</p>
+                </li>
+               ) ;
+         }
+     }) ;   
 
      var FilteredPhoneList = React.createClass({
           render: function(){
@@ -65,7 +70,7 @@ var ReactDOM = require('react-dom')
     var PhoneCatalogueApp = React.createClass({
       getInitialState: function() {
            return { search: '', sort: 'name' } ;
-      }, 
+      },
       handleChange : function(type,value) {
             if ( type == 'search' ) {
                 this.setState( { search: value } ) ;
@@ -74,17 +79,17 @@ var ReactDOM = require('react-dom')
               }
       }, 
       render: function(){
-        //console.log('Criteria: Search= ' + this.state.search + ' ; Sort= ' this.state.sort);
-        var list = this.props.phones.filter(function(p) {
+           //console.log('Criteria: Search= ' + this.state.search + ' ; Sort= ' this.state.sort);
+           var list = phones.filter(function(p) {
                   return p.name.toLowerCase().search(this.state.search.toLowerCase() ) != -1 ;
                 }.bind(this) );
-        var filteredList = _.sortBy(list, this.state.sort) ;
-          return (
+          var filteredList = _.sortBy(list, this.state.sort) ;
+           return (
                 <div className="view-container">
                 <div className="view-frame">
                    <div className="container-fluid">
                    <div className="row">
-                       <SelectBox onUserInput={this.handleChange } 
+                      <SelectBox onUserInput={this.handleChange } 
                              filterText={this.state.search} 
                              sort={this.state.sort} />
                        <FilteredPhoneList phones={filteredList} />
@@ -96,7 +101,24 @@ var ReactDOM = require('react-dom')
       }
     });
 
-    ReactDOM.render(
-      <PhoneCatalogueApp phones={phones} />,
+var App = React.createClass({
+      render : function() {
+        return (
+          <div>
+            <h1>Phone Catalogue </h1>
+            {this.props.children}
+          </div>
+        )
+      }
+    });
+
+    ReactDOM.render( (
+      <Router >
+        <Route path="/" component={App}>
+           <IndexRoute component={PhoneCatalogueApp}/>
+           <Route path="phones/:id" component={PhoneDetail} />
+        </Route>
+      </Router>
+    ),
       document.getElementById('mount-point')
     );

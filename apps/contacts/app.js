@@ -1,3 +1,4 @@
+// TODO
 var ReactDOM = require('react-dom');
 var React = require('react');
 var api =  require ('./stubAPI').api; 
@@ -188,17 +189,17 @@ var buttons = require('./buttonsConfig' ).buttons ;
                 api.add(n,a,p) ;
                 this.setState({});
           },
-          render: function(){
+	      	render: function(){
             var contacts = api.getAll() ;
-            return (
-                  <div>
-                     <h1>Contact List.</h1>
-                     <ContactsTable contacts={contacts} 
+	          return (
+	                <div>
+	                   <h1>Contact List.</h1>
+	                   <ContactsTable contacts={contacts} 
                         updateHandler={this.updateContact} deleteHandler={this.deleteContact} addHandler={this.addContact} /> 
-                  </div>
-            );
-        }
-    });
+	                </div>
+	          );
+	      }
+	  });
 
     // Changed code 
     ReactDOM.render(
