@@ -6,9 +6,25 @@ var ReactRouter = require('react-router')
     var IndexRoute = ReactRouter.IndexRoute
 var ReactDOM = require('react-dom')
     var React = require('react')
-    var phones = require('./data').allPhones ;
+    var phones = require('./components/data').allPhones ;
     var _ = require('lodash');    //NEW
-    var PhoneDetail = require('./phoneDetail.js' ).PhoneDetail ;
+    var PhoneDetail = require('./components/phoneDetail.js' ).PhoneDetail ;
+var Header = require('./components/header');
+var Footer = require('./components/footer');
+var Signup = require('./components/signup');
+
+var About = React.createClass({  
+
+  render: function() {
+    return (
+      <div>
+      <h1> About </h1>
+      </div>
+      
+    );
+  } 
+  }) ;
+
 
     var SelectBox = React.createClass({
       handleChange : function(e, type,value) {
@@ -105,8 +121,10 @@ var App = React.createClass({
       render : function() {
         return (
           <div>
+          <Header />
             <h1>Phone Catalogue </h1>
             {this.props.children}
+            <Footer />
           </div>
         )
       }
@@ -115,6 +133,8 @@ var App = React.createClass({
     ReactDOM.render( (
       <Router >
         <Route path="/" component={App}>
+        <Route path="about" component={Signup} />
+        <Route path="phones" component={FilteredPhoneList} />
            <IndexRoute component={PhoneCatalogueApp}/>
            <Route path="phones/:id" component={PhoneDetail} />
         </Route>
