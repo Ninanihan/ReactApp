@@ -10,19 +10,19 @@ var Header = React.createClass({
               <nav>
                   <ul className="nav navbar-nav navbar-right">
                     <li><Link to="/">Home</Link></li>
-                    <li><Link to="/phones">Phones</Link></li>
+                    
                     <li><Link to="/about">About</Link></li>
+                    <li><Link to="/contact">Contact</Link></li>
+                     <li><Link to="/signup">Signup</Link></li>
                     <li className="dropdown">
                       <Link to="#" className="dropdown-toggle" data-toggle="dropdown">
                         Account <b className="caret"></b>
                       </Link>
                       <ul className="dropdown-menu">
                         <li><Link to="/about">Profile</Link></li>
-                        <li><Link to="/cake">Settings</Link></li>
-                        <li className="divider"></li>
-                        <li>
-                           <Link to="/about">Logout</Link>
-                        </li>
+                       
+                       
+                        
                       </ul>
                     </li>
                   </ul>
