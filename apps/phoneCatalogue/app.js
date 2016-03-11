@@ -12,6 +12,7 @@ var ReactDOM = require('react-dom')
 var Header = require('./components/header');
 var Footer = require('./components/footer');
 var Signup = require('./components/signup');
+var Login = require('./components/login');
 var ContactsApp = require('./components/contact').ContactsApp;
 
 var About = React.createClass({  
@@ -123,7 +124,6 @@ var App = React.createClass({
         return (
           <div>
           <Header />
-            <h1>Phone Catalogue </h1>
             {this.props.children}
             <Footer />
           </div>
@@ -136,6 +136,7 @@ var App = React.createClass({
         <Route path="/" component={App}>
         <Route path="about" component={About} />
         <Route path="signup" component={Signup} />
+        <Route path="login" component={Login} />
         <Route path="contact" component={ContactsApp} />
         
            <IndexRoute component={PhoneCatalogueApp}/>

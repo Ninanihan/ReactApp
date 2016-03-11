@@ -1,5 +1,4 @@
 var _ = require('lodash');
-
     var contacts = [
                     {
                         "name": "Contact 1",

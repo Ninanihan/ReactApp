@@ -14,6 +14,7 @@ var Header = React.createClass({
                     <li><Link to="/about">About</Link></li>
                     <li><Link to="/contact">Contact</Link></li>
                      <li><Link to="/signup">Signup</Link></li>
+                     <li><Link to="/login">Login</Link></li>
                     <li className="dropdown">
                       <Link to="#" className="dropdown-toggle" data-toggle="dropdown">
                         Account <b className="caret"></b>
@@ -21,8 +22,7 @@ var Header = React.createClass({
                       <ul className="dropdown-menu">
                         <li><Link to="/about">Profile</Link></li>
                        
-                       
-                        
+                                    
                       </ul>
                     </li>
                   </ul>

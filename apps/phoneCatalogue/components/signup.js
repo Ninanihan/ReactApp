@@ -49,20 +49,21 @@
 
       render: function(){
       return (
-<form>
-  <div class="form-group">
-    <label for="exampleInputEmail1">Email address</label>
-    <input type="email" class="form-control" name="email" id="exampleInputEmail1" placeholder="Enter email" 
-    value={this.state.email} onChange={this.handleChange.bind(this,'email')} />
-  </div>
-  <div class="form-group">
-    <label for="exampleInputPassword1">Password</label>
-    <input type="password" class="form-control" name="password" id="exampleInputPassword1" placeholder="Password"
-    value={this.state.password} onChange={this.handleChange.bind(this, 'password')}/>
-  </div>
-  <button type="submit" class="btn btn-default" onClick={this.handleSubmit} value="SignUp" >Submit</button>
-  <li><Link to="/signup">Create an new account?</Link></li>
-</form>
+      
+      <form>
+      <div class="form-group">
+        <label for="exampleInputEmail1">Email address</label>
+        <input type="email" class="form-control" name="email" id="exampleInputEmail1" placeholder="Enter email" 
+        value={this.state.email} onChange={this.handleChange.bind(this,'email')} />
+      </div>
+      <div class="form-group">
+        <label for="exampleInputPassword1">Password</label>
+        <input type="password" class="form-control" name="password" id="exampleInputPassword1" placeholder="Password"
+        value={this.state.password} onChange={this.handleChange.bind(this, 'password')}/>
+      </div>
+      <button type="submit" class="btn btn-default" onClick={this.handleSubmit} value="SignUp" >Submit</button>
+      <li><Link to="/signup">Create an new account?</Link></li>
+      </form>
 );
 }
      });
