@@ -10,10 +10,10 @@ var ReactDOM = require('react-dom')
     var _ = require('lodash');    //NEW
     var PhoneDetail = require('./components/phoneDetail.js' ).PhoneDetail ;
 var Header = require('./components/header');
-var Footer = require('./components/footer');
 var Signup = require('./components/signup');
 var Login = require('./components/login');
 var ContactsApp = require('./components/contact').ContactsApp;
+var Logout = require('./components/logout').Logout;
 
 var About = React.createClass({  
 
@@ -21,6 +21,22 @@ var About = React.createClass({
     return (
       <div>
       <h1> About </h1>
+      </div>
+      
+    );
+  } 
+  }) ;
+var Welcome = React.createClass({  
+
+  render: function() {
+    return (
+      <div>
+      <h1> Welcome </h1>
+      <div style={{"textAlign": "center"
+          }}>
+      <Link to = "/login"><button type= "submit" className="btn btn-primary btn-lg"
+        > LOG IN </button></Link>
+      </div>
       </div>
       
     );
@@ -125,7 +141,6 @@ var App = React.createClass({
           <div>
           <Header />
             {this.props.children}
-            <Footer />
           </div>
         )
       }
@@ -138,6 +153,8 @@ var App = React.createClass({
         <Route path="signup" component={Signup} />
         <Route path="login" component={Login} />
         <Route path="contact" component={ContactsApp} />
+        <Route path="logout" component={Logout} />
+        <Route path="welcome" component={Welcome} />
         
            <IndexRoute component={PhoneCatalogueApp}/>
            <Route path="phones/:id" component={PhoneDetail} />

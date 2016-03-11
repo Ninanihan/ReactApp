@@ -34,7 +34,7 @@
     type: 'GET',
     dataType: 'json',
     success: function(data) {
-       var result =  _.find(data, { 'email': email, 'password': password });
+       var result =  _.find(data, { 'email': email, 'password': Number(password) });
       if(result) {
         alert('Logged In');
         localStorage.setItem('user',email);
@@ -49,7 +49,8 @@
 
       render: function(){
       return (
-<form>
+<form style={{"textAlign": "center"
+          }}>
   <div class="form-group">
     <label for="exampleInputEmail1">Email address</label>
     <input type="email" class="form-control" name="email" id="exampleInputEmail1" placeholder="Enter email" 

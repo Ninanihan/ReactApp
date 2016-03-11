@@ -3,12 +3,12 @@
     {
       "id": 1,
       "email": "nihan1994@163.com",
-      "password": "123456"
+      "password": 123456
     },
     {
       "id": 2,
       "email": "906575003@qq.com",
-      "password": "123456"
+      "password": 123456
     },
     {
       "email": "NIAN@SD.COM",
@@ -24,6 +24,21 @@
       "email": "wps_zy@126.com",
       "password": 123456,
       "id": 5
+    },
+    {
+      "email": "fan@wit.ie",
+      "password": 123456,
+      "id": 6
+    },
+    {
+      "email": "dfs@l.ie",
+      "password": 12345,
+      "id": 7
+    },
+    {
+      "email": "eqw@g.ie",
+      "password": 123,
+      "id": 8
     }
   ]
 }

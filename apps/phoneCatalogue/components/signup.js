@@ -35,7 +35,7 @@
     dataType: 'json',
     data: {
       email: email,
-      password: password
+      password: password.toString()
     },
     success: function(data) {
         
@@ -50,19 +50,29 @@
       render: function(){
       return (
       
-      <form>
-      <div class="form-group">
-        <label for="exampleInputEmail1">Email address</label>
-        <input type="email" class="form-control" name="email" id="exampleInputEmail1" placeholder="Enter email" 
-        value={this.state.email} onChange={this.handleChange.bind(this,'email')} />
+      <form style={{"textAlign": "center"
+          }}>
+      <br/><br/><br/><br/>
+      <div className="input-group">
+        <span className="input-group-addon" id="sizing-addon2">Name &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+        <input type="text" className="form-control" placeholder="Username" aria-describedby="sizing-addon2"
+          value={this.state.email} onChange={this.handleChange.bind(this,'email')}/>
       </div>
-      <div class="form-group">
-        <label for="exampleInputPassword1">Password</label>
-        <input type="password" class="form-control" name="password" id="exampleInputPassword1" placeholder="Password"
-        value={this.state.password} onChange={this.handleChange.bind(this, 'password')}/>
+      <br/>
+      <br/>
+      <div className="input-group">
+        <span className="input-group-addon" id="sizing-addon2">Password</span>
+        <input type="password" className="form-control" placeholder="Password" aria-describedby="sizing-addon2"
+          value={this.state.password} onChange={this.handleChange.bind(this, 'password')}/>
       </div>
-      <button type="submit" class="btn btn-default" onClick={this.handleSubmit} value="SignUp" >Submit</button>
-      <li><Link to="/signup">Create an new account?</Link></li>
+      <br/>
+      <br/>
+      <div style={{"textAlign": "center"
+          }}>
+      <Link to = "/login"><button type= "submit" className="btn btn-primary btn-lg" onClick={this.handleSubmit} value="SignUp"
+        >Sign up</button></Link>
+      </div>
+      
       </form>
 );
 }
