@@ -1,0 +1,15 @@
+{
+   
+    "id": "golden", 
+    "images": [
+        "img/dogs/golden.0.jpg", 
+        "img/dogs/golden.1.jpg", 
+        "img/dogs/golden.2.jpg"
+        
+    ],  
+    "name": "golden", 
+    "sizeAndWeight": {
+        "dimensions": "25.0 mm (each)", 
+        "weight": "450 grams"
+    }
+}
