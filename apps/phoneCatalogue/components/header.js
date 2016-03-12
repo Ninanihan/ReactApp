@@ -2,6 +2,11 @@ var React = require("react");
 var Link = require('react-router').Link;
 
 var Header = React.createClass({
+  getInitialState: function(){
+    return{
+      
+    };
+  },
   render : function() {
     return (
       <div className="navbar navbar-fixed-top navbar-inverse" >
@@ -13,7 +18,6 @@ var Header = React.createClass({
                     <li><Link to="/welcome">Welcome</Link></li>
                     <li><Link to="/about">About</Link></li>
                     <li><Link to="/contact">Contact</Link></li>
-                    
                      
                     <li className="dropdown">
                       <Link to="/logout" className="dropdown-toggle">

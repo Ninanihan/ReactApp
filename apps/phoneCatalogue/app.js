@@ -16,7 +16,6 @@ var ContactsApp = require('./components/contact').ContactsApp;
 var Logout = require('./components/logout').Logout;
 
 var About = React.createClass({  
-
   render: function() {
     return (
       <div>
@@ -74,25 +73,43 @@ var Welcome = React.createClass({
 
     // TODO (missing component)
     var PhoneItem = React.createClass({
+
+      addToCart: function(){
+       this.props.refs();
+      },
       render: function(){
            return (
                 <li className="thumbnail phone-listing">
                   <Link to={'/phones/' + this.props.phones.id} className="thumb">
-                       <img src={this.props.phones.imageUrl} /> </Link>
-                  <Link to={'/phones/' + this.props.phones.id}> {this.props.phones.name}</Link>
+                       <img src={this.props.phones.imageUrl} /></Link>
+                  <Link to={'/phones/' + this.props.phones.id}>{this.props.phones.name}</Link>
                   <p>{this.props.phones.snippet}</p>
+                  <button type="button" className="btn btn-default" onClick={this.addToCart}>Add To Cart</button>
                 </li>
                ) ;
          }
      }) ;   
 
      var FilteredPhoneList = React.createClass({
+      test: function() {
+        this.setState({itemNumber: this.state.itemNumber+1})
+      },
+
+      getInitialState: function(){
+        return{
+          itemNumber: 0
+        };
+      },
           render: function(){
+            var self = this;
               var displayedPhones = this.props.phones.map(function(phone) {
-                  return <PhoneItem key={phone.id} phones={phone} /> ;
+                  return <PhoneItem key={phone.id} phones={phone} refs={self.test}/> ;
               }) ;
               return (
                       <div className="col-md-10">
+                       <button className="btn btn-primary" type="button">Shop Cart <br/>
+                      <span class="badge">{this.state.itemNumber}</span>
+                    </button>
                         <ul className="phones">
                             {displayedPhones}
                         </ul>
@@ -126,7 +143,7 @@ var Welcome = React.createClass({
                       <SelectBox onUserInput={this.handleChange } 
                              filterText={this.state.search} 
                              sort={this.state.sort} />
-                       <FilteredPhoneList phones={filteredList} />
+                      <FilteredPhoneList phones={filteredList} />
                   </div> 
                   </div>                   
                 </div>
@@ -155,7 +172,6 @@ var App = React.createClass({
         <Route path="contact" component={ContactsApp} />
         <Route path="logout" component={Logout} />
         <Route path="welcome" component={Welcome} />
-        
            <IndexRoute component={PhoneCatalogueApp}/>
            <Route path="phones/:id" component={PhoneDetail} />
         </Route>
