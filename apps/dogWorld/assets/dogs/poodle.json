@@ -1,0 +1,13 @@
+{
+   
+    "id": "poodle", 
+    "images": [
+        "img/dogs/poodle.0.jpg", 
+        "img/dogs/poodle.1.jpg", 
+        "img/dogs/poodle.2.jpg"
+        
+    ],  
+    "name": "poodle", 
+    "price": "67"
+    
+}

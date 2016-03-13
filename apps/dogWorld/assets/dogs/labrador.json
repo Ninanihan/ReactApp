@@ -1,0 +1,13 @@
+{
+   
+    "id": "labrador", 
+    "images": [
+        "img/dogs/labrador.0.jpg", 
+        "img/dogs/labrador.1.jpg", 
+        "img/dogs/labrador.2.jpg"
+        
+    ],  
+    "name": "labrador", 
+    "price": "62"
+    
+}

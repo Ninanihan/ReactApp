@@ -123,6 +123,7 @@ var Form = React.createClass({
                   <div>
                        {mainImage}
                        <h1>{this.props.dog.name}</h1>
+                       <p>Price: € {this.props.dog.price}</p>
                        
                        <ul className="dog-thumbs">
                            {thumbImages}

@@ -1,0 +1,13 @@
+{
+   
+    "id": "bulldog", 
+    "images": [
+        "img/dogs/bulldog.0.jpg", 
+        "img/dogs/bulldog.1.jpg", 
+        "img/dogs/bulldog.2.jpg"
+        
+    ],  
+    "name": "bulldog", 
+    "price": "65"
+    
+}

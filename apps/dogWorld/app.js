@@ -25,8 +25,8 @@ var About = React.createClass({
     );
   } 
   }) ;
-var Welcome = React.createClass({  
 
+var Welcome = React.createClass({  
   render: function() {
     return (
       <div>
@@ -64,7 +64,7 @@ var Welcome = React.createClass({
                   <select id="sort" value={this.props.order } 
                          onChange={this.handleSortChange} >
                      <option value="name">Alphabetical</option>
-                     <option value="age">Newest</option>
+                     <option value="price">Price:Low to High</option>
                  </select>
              </div>
                );
@@ -83,7 +83,7 @@ var Welcome = React.createClass({
                   <Link to={'/dogs/' + this.props.dogs.id} className="thumb">
                        <img src={this.props.dogs.imageUrl} /></Link>
                   <Link to={'/dogs/' + this.props.dogs.id}>{this.props.dogs.name}</Link>
-                  <p>{this.props.dogs.snippet}</p>
+                  <p>Price: €{this.props.dogs.price}</p>
                   <button type="button" className="btn btn-default" onClick={this.addToCart}>Add To Cart</button>
                 </li>
                ) ;

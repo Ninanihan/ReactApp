@@ -1,0 +1,13 @@
+{
+   
+    "id": "yorkshire", 
+    "images": [
+        "img/dogs/yorkshire.0.jpg", 
+        "img/dogs/yorkshire.1.jpg", 
+        "img/dogs/yorkshire.2.jpg"
+        
+    ],  
+    "name": "yorkshire", 
+    "price": "63"
+    
+}

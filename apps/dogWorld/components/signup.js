@@ -50,30 +50,31 @@
       render: function(){
       return (
       
-      <form style={{"textAlign": "center"
-          }}>
-      <br/><br/><br/><br/>
-      <h1>SIGN UP</h1>
-      <div className="input-group">
-        <span className="input-group-addon" id="sizing-addon2">Email &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-        <input type="text" className="form-control" placeholder="Email" aria-describedby="sizing-addon2"
+      <form style={{"textAlign": "center"}}>
+        <div className="col-md-4">
+        <br/><br/>
+        <h1>SIGN UP</h1>
+          <div className="input-group">
+            <span className="input-group-addon" id="sizing-addon2">Email &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+            <input type="text" className="form-control" placeholder="Email" aria-describedby="sizing-addon2"
           value={this.state.email} onChange={this.handleChange.bind(this,'email')}/>
-      </div>
-      <br/>
-      <br/>
-      <div className="input-group">
-        <span className="input-group-addon" id="sizing-addon2">Password</span>
-        <input type="password" className="form-control" placeholder="Password" aria-describedby="sizing-addon2"
+          </div>
+          <br/>
+          <div className="input-group">
+            <span className="input-group-addon" id="sizing-addon2">Password</span>
+            <input type="password" className="form-control" placeholder="Password" aria-describedby="sizing-addon2"
           value={this.state.password} onChange={this.handleChange.bind(this, 'password')}/>
-      </div>
-      <br/>
-      <br/>
-      <div style={{"textAlign": "center"}}>
-      <Link to = "/login"><button type= "submit" className="btn btn-primary btn-lg" onClick={this.handleSubmit} value="SignUp"
+          </div>
+          <br/>
+          <br/>
+          <div style={{"textAlign": "center"}}>
+            <Link to = "/login"><button type= "submit" className="btn btn-primary btn-lg" onClick={this.handleSubmit} value="SignUp"
         >Sign up</button></Link>
-      </div>
-      
+          </div>
+        </div>
       </form>
+      
+     
 );
 }
      });
