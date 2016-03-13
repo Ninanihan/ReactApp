@@ -11,12 +11,12 @@ var Header = React.createClass({
     return (
       <div className="navbar navbar-fixed-top navbar-inverse" >
             <div className="container">
-              <Link to="/" id="logo" >App</Link>
+              <Link to="/" id="logo" >DOGWORLD</Link>
               <nav>
                   <ul className="nav navbar-nav navbar-right">
                     <li><Link to="/">Home</Link></li>
-                    <li><Link to="/welcome">Welcome</Link></li>
-                    <li><Link to="/about">About</Link></li>
+                    <li><Link to="/dog">Dogs</Link></li>
+                    
                     <li><Link to="/contact">Contact</Link></li>
                      
                     <li className="dropdown">

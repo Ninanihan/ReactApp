@@ -65,6 +65,7 @@
             <input type="password" className="form-control" placeholder="Password" aria-describedby="sizing-addon2"
           value={this.state.password} onChange={this.handleChange.bind(this, 'password')}/>
           </div>
+          
           <br/>
           <br/>
           <div style={{"textAlign": "center"}}>

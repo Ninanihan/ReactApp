@@ -15,29 +15,24 @@ var Login = require('./components/login');
 var ContactsApp = require('./components/contact').ContactsApp;
 var Logout = require('./components/logout').Logout;
 
-var About = React.createClass({  
-  render: function() {
-    return (
-      <div>
-      <h1> About </h1>
-      </div>
-      
-    );
-  } 
-  }) ;
+
 
 var Welcome = React.createClass({  
   render: function() {
     return (
-      <div>
-      <h1> Welcome </h1>
-      <div style={{"textAlign": "center"
-          }}>
-      <Link to = "/login"><button type= "submit" className="btn btn-primary btn-lg"
-        > LOG IN </button></Link>
-      </div>
-      </div>
+      <header id="top" class="header">
+        <div class="background">       
+        <div class="text-vertical-center">
+        <h1> Welcome </h1>
       
+      <h2><Link to = "/login"><button type= "submit" className="btn btn-primary btn-lg"
+        > LOG IN </button></Link></h2>
+      </div>
+      </div>
+      </header>
+      
+      
+
     );
   } 
   }) ;
@@ -166,13 +161,12 @@ var App = React.createClass({
     ReactDOM.render( (
       <Router >
         <Route path="/" component={App}>
-        <Route path="about" component={About} />
         <Route path="signup" component={Signup} />
         <Route path="login" component={Login} />
         <Route path="contact" component={ContactsApp} />
         <Route path="logout" component={Logout} />
-        <Route path="welcome" component={Welcome} />
-           <IndexRoute component={DogWorldApp}/>
+        <Route path="dog" component={DogWorldApp} />
+           <IndexRoute component={Welcome}/>
            <Route path="dogs/:id" component={DogDetail} />
         </Route>
       </Router>
