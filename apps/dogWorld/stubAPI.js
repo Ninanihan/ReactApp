@@ -1,28 +1,23 @@
 var _ = require('lodash');
     var contacts = [
                     {
-                        "name": "Contact 1",
-                        "address": "123 Test St",
-                        "phone_number": "132-3212"
+                        "name": "nihan1994@163.com",
+                        "address": "19 Lismore Park, Waterford",
+                        "phone_number": "0873996191"
                     },
 
                     {
-                        "name": "Contact 2",
-                        "address": "23 Main St",
-                        "phone_number": "934-4329"
+                        "name": "906575003@qq.com",
+                        "address": "91 Lisomre Park,Waterford",
+                        "phone_number": "0873996192"
                     },
 
                     {
-                        "name": "Contact 3",
-                        "address": "4 Lower St",
-                        "phone_number": "432-5832"
-                    },
-
-                    {
-                        "name": "Contact 4",
-                        "address": "49 Upper Street",
-                        "phone_number": "934-4290"
+                        "name": "1@qq.com",
+                        "address": "9 Lisomre Park,Waterford",
+                        "phone_number": "0873996189"
                     }
+
                   ] ; 
 
     var stubAPI = {

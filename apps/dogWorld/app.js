@@ -20,16 +20,19 @@ var Logout = require('./components/logout').Logout;
 var Welcome = React.createClass({  
   render: function() {
     return (
-      <header id="top" class="header">
-        <div class="background">       
-        <div class="text-vertical-center">
-        <h1> Welcome </h1>
       
-      <h2><Link to = "/login"><button type= "submit" className="btn btn-primary btn-lg"
-        > LOG IN </button></Link></h2>
+        <div className ="background"> 
+        <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> 
+        <br/> <br/> <br/> <br/> <br/> <br/><br/> <br/>       
+        <div className="row">
+        <div className="col-md-3 col-md-offset-7" >  
+
+      <h2><Link to = "/login"><button type= "submit" className="btn btn-primary btn-lg"> LOG IN </button></Link></h2>  
+        <br/> <br/> <br/> <br/> <br/><br/> <br/> <br/> <br/>
+       </div>
+       </div>
       </div>
-      </div>
-      </header>
+      
       
       
 
