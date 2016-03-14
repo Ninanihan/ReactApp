@@ -50,27 +50,37 @@
       render: function(){
       return (
 
-<form style={{"textAlign": "center"}}>
-<div className="col-md-4">
-<br/><br/>
+<div className ="background1">
+<br/> <br/> <br/> <br/> <br/> <br/><br/> <br/>
+<div className ="row">
+<div className="col-md-3 col-md-offset-7">
 <h1>LOG IN</h1>
-  <div class="input-group">
+  <div className="input-group">
     <span className="input-group-addon" id="sizing-addon2">Email &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-    <input type="text" className="form-control" placeholder="Enter email" aria-describedby="sizing-addon2"
+    <input type="text" className="form-control" placeholder="Email" aria-describedby="sizing-addon2"
           value={this.state.email} onChange={this.handleChange.bind(this,'email')} />
   </div>
   <br/>
-  <div class="input-group">
+  <div className="input-group">
     <span className="input-group-addon" id="sizing-addon2">Password</span>
     <input type="password" className="form-control" placeholder="Password" aria-describedby="sizing-addon2"
            value={this.state.password} onChange={this.handleChange.bind(this, 'password')}/>
   </div>
   
   <br/>
+  <div style={{"textAlign": "center"}}>
   <button type="submit" className="btn btn-primary btn-lg" onClick={this.handleSubmit} value="SignUp" >Login</button>
   <br/>
-  <li><Link to="/signup">Create an new account?</Link></li></div>
-</form>
+  <br/>
+  
+  <li><Link to="/signup">Create an new account?</Link></li>
+  </div>
+  
+  </div>
+  </div>
+  <br/> <br/> <br/> <br/> <br/> <br/><br/> <br/> <br/> <br/> 
+  </div>
+
 
 );
 }

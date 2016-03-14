@@ -50,9 +50,11 @@
       render: function(){
       return (
       
-      <form style={{"textAlign": "center"}}>
-        <div className="col-md-4">
-        <br/><br/>
+      <div className ="background1">
+      <br/> <br/> <br/> <br/> <br/> <br/><br/> <br/>
+      <div className ="row">
+      <div className="col-md-3 col-md-offset-7">
+        
         <h1>SIGN UP</h1>
           <div className="input-group">
             <span className="input-group-addon" id="sizing-addon2">Email &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
@@ -73,7 +75,10 @@
         >Sign up</button></Link>
           </div>
         </div>
-      </form>
+        </div>
+  <br/> <br/> <br/> <br/> <br/> <br/><br/> <br/> <br/> <br/> 
+  </div>
+      
       
      
 );

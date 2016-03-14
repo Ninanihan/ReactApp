@@ -1,4 +1,6 @@
-
+body{
+  padding-top: 60px;
+}
 
 section {
   overflow: auto;
@@ -103,13 +105,14 @@ footer ul li {
   float: left;
   margin: -0.5em 1em 1.5em 0;
   padding-bottom: 1em;
-  height: 100px;
-  width: 100px;
+  height: 150px;
+  width: 150px;
 }
 
 .dogs li {
   clear: both;
-  height: 115px;
+  height: 170px;
+  width: 300px;
   padding-top: 15px;
 }
 
@@ -172,4 +175,11 @@ ul.specs dt {
   background-size: cover;
   background-repeat: no-repeat;
 }
-
+.background1 {
+  background-image: url("2.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.font1{
+  font-size:20px;
+}

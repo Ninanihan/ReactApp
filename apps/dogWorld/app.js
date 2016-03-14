@@ -14,7 +14,7 @@ var Signup = require('./components/signup');
 var Login = require('./components/login');
 var ContactsApp = require('./components/contact').ContactsApp;
 var Logout = require('./components/logout').Logout;
-
+var Cart = require('./components/cart').Cart;
 
 
 var Welcome = React.createClass({  
@@ -54,17 +54,24 @@ var Welcome = React.createClass({
       },
       render: function(){
            return (
-                <div className="col-md-10">
-               <input type="text" placeholder="Search" 
+            <form className="form-inline" style={{"textAlign": "center"}}>
+               <div className="form-group">
+               <input type="text" className="form-control" id="exampleInputName2" placeholder="Search" 
                           value={this.props.filterText}
                           onChange={this.handleTextChange} />
-                 Sort by:
-                  <select id="sort" value={this.props.order } 
+              </div>
+              <div className="form-group">
+              <label for="exampleInputEmail2">&nbsp;&nbsp;&nbsp;&nbsp;Sort by:&nbsp;&nbsp;</label>       
+                  <select id="sort" className="form-control" value={this.props.order } 
                          onChange={this.handleSortChange} >
                      <option value="name">Alphabetical</option>
                      <option value="price">Price:Low to High</option>
                  </select>
              </div>
+             <br/>
+            <br/>
+            </form>
+
                );
           }
        });
@@ -73,24 +80,59 @@ var Welcome = React.createClass({
     var DogItem = React.createClass({
 
       addToCart: function(){
-       this.props.refs();
+       var flag = false;
+        if(localStorage.getItem('carts')){  
+        var that = this; 
+          var updatedarray = 
+            JSON.parse(localStorage.getItem('carts')).cartsarray;
+            updatedarray.map(function(item){
+              if(item == that.props.dogs.id){
+                flag = true;
+              }
+            });
+          if(flag == false){
+            updatedarray.push(this.props.dogs.id);
+            
+            updatedarray = JSON.stringify({"cartsarray": updatedarray});
+            localStorage.setItem('carts',updatedarray);
+            this.props.refs();
+            alert("Added successfully!");
+          }else{
+            alert("You have added!");
+          }        
+        }else{
+          var carts = { "cartsarray" : []};
+          carts.cartsarray.push(this.props.dogs.id);
+          carts = JSON.stringify(carts);
+          localStorage.setItem('carts',carts);
+          this.props.refs();
+          alert("Added successfully!");
+          this.setState({});
+        }
       },
       render: function(){
            return (
+               
                 <li className="thumbnail dog-listing">
                   <Link to={'/dogs/' + this.props.dogs.id} className="thumb">
-                       <img src={this.props.dogs.imageUrl} /></Link>
-                  <Link to={'/dogs/' + this.props.dogs.id}>{this.props.dogs.name}</Link>
+                       <img src={this.props.dogs.imageUrl} className="img-circle"/></Link>
+                  <Link to={'/dogs/' + this.props.dogs.id} className="font1">{this.props.dogs.name}</Link>
+                  <br/>
+                  <br/>
                   <p>Price: €{this.props.dogs.price}</p>
+
                   <button type="button" className="btn btn-default" onClick={this.addToCart}>Add To Cart</button>
                 </li>
+                
                ) ;
          }
      }) ;   
 
      var FilteredDogList = React.createClass({
       test: function() {
-        this.setState({itemNumber: this.state.itemNumber+1})
+        this.setState({itemNumber: this.state.itemNumber+1});
+        num = JSON.stringify(this.state.itemNumber + 1);
+        localStorage.setItem('itemnumber',num);
       },
 
       getInitialState: function(){
@@ -103,11 +145,16 @@ var Welcome = React.createClass({
               var displayedDogs = this.props.dogs.map(function(dog) {
                   return <DogItem key={dog.id} dogs={dog} refs={self.test}/> ;
               }) ;
+              var num = JSON.parse(localStorage.getItem('itemnumber'));
+
               return (
                       <div className="col-md-10">
-                       <button className="btn btn-primary" type="button">Shop Cart <br/>
-                      <span class="badge">{this.state.itemNumber}</span>
-                    </button>
+                       <Link to={'/cart'}>
+                       <button className="btn btn-primary" type="button"
+                          style={{"position":"fixed","marginLeft":"1000px"}} >Shop Cart <br/>
+                      <span class="badge">{num}</span>
+                      </button>
+                      </Link>
                         <ul className="dogs">
                             {displayedDogs}
                         </ul>
@@ -169,6 +216,7 @@ var App = React.createClass({
         <Route path="contact" component={ContactsApp} />
         <Route path="logout" component={Logout} />
         <Route path="dog" component={DogWorldApp} />
+        <Route path="cart" component={Cart} />
            <IndexRoute component={Welcome}/>
            <Route path="dogs/:id" component={DogDetail} />
         </Route>

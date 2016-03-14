@@ -6,44 +6,39 @@ var buttons = require('./buttonsConfig' ).buttons ;
     var ContactForm = React.createClass({
        getInitialState : function() {
                return {
-                addname: "",
-                add_address: "",
-                add_phone_number: ""
+                addemail: "",
+                add_problem: ""
+                
                } ;
             },
         handlerAdd: function(e){
           e.preventDefault();
-          var name = this.state.addname.trim();
-          var address = this.state.add_address.trim();
-          var phone_number = this.state.add_phone_number.trim();
-          if (!name || !address || !phone_number) {
+          var email = this.state.addemail.trim();
+          var problem = this.state.add_problem.trim();
+          if (!email || !problem ) {
                   return;
           }
-          this.props.addHandler(name,address,phone_number);
-          this.setState({addname: "",add_address: "",add_phone_number: ""});
+          this.props.addHandler(email,problem);
+          this.setState({addemail: "",add_problem: ""});
         },
-        handleNameChange: function(e) {
-                this.setState({addname: e.target.value});
+        handleEmailChange: function(e) {
+                this.setState({addemail: e.target.value});
         },
-        handleAddressChange: function(e) {
-           this.setState({add_address: e.target.value});
+        handleProblemChange: function(e) {
+           this.setState({add_problem: e.target.value});
         },
-        handlePhoneNumChange: function(e) {
-           this.setState({add_phone_number: e.target.value});
-        },
+        
         
         render: function(){
           return (
             <tr>
-              <td key={'addname'}>
-              <input type="text" className="form-control" onChange={this.handleNameChange} value={this.state.addname} />
+              <td key={'addemail'}>
+              <input type="text" className="form-control" onChange={this.handleEmailChange} value={this.state.addemail} />
               </td>
-              <td key={'add_address'}>
-              <input type="text" className="form-control" onChange={this.handleAddressChange} value={this.state.add_address} />
+              <td key={'add_problem'}>
+              <input type="text" className="form-control" onChange={this.handleProblemChange} value={this.state.add_problem} />
               </td>
-              <td key={'add_phone_number'}>
-              <input type="text" className="form-control" onChange={this.handlePhoneNumChange} value={this.state.add_phone_number}/>
-              </td>
+              
               <td>
               <input type="button" className="btn btn-primary" value="Add" onClick={this.handlerAdd}/>
               </td>
@@ -55,18 +50,16 @@ var buttons = require('./buttonsConfig' ).buttons ;
       getInitialState : function() {
                return {
                 status : '',
-                name: this.props.contacts.name,
-                address: this.props.contacts.address,
-                phone_number: this.props.contacts.phone_number
+                email: this.props.contacts.emial,
+                problem: this.props.contacts.problem
                } ;
             },
              
           render: function(){
                
                var fields = [
-                     <td key={'name'} >{this.props.contacts.name}</td>,
-                      <td key={'address'}>{this.props.contacts.address}</td>,
-                      <td key={'phone_number'}>{this.props.contacts.phone_number}</td>
+                     <td key={'email'} >{this.props.contacts.email}</td>,
+                      <td key={'problem'}>{this.props.contacts.problem}</td>,
                    ] ;
               
               return (
@@ -85,7 +78,7 @@ var buttons = require('./buttonsConfig' ).buttons ;
           render: function(){
                var contactRows = this.props.contacts.map(function(contact){
                     return (
-                     <Contact key={contact.phone_number}  contacts={contact}  />
+                     <Contact key={contact.emial}  contacts={contact}  />
                       ) ;
                   }.bind(this) );
               return (
@@ -104,8 +97,7 @@ var buttons = require('./buttonsConfig' ).buttons ;
                       <thead>
                         <tr>
                         <th>Email</th>
-                        <th>Address</th>
-                        <th>Phone Number</th>
+                        <th>Problem</th>
                         <th></th>
                        
                         </tr>
@@ -119,8 +111,8 @@ var buttons = require('./buttonsConfig' ).buttons ;
 
        var ContactsApp = React.createClass({
           
-          addContact : function(n,a,p){
-                api.add(n,a,p) ;
+          addContact : function(e,p){
+                api.add(e,p) ;
                 this.setState({});
           },
 	      	render: function(){
